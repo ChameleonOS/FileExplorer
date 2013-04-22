@@ -1,0 +1,6 @@
+# Keep all Fragments in this package, which are used by reflection.
+-keep class net.micode.fileexplorer.*
+-keep class org.swiftp.*
+
+# Keep click responders
+
