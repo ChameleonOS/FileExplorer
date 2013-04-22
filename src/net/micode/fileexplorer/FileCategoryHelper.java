@@ -52,7 +52,9 @@ public class FileCategoryHelper {
     }
 
     private static String APK_EXT = "apk";
-    private static String THEME_EXT = "mtz";
+    private static String[] THEME_EXTS = new String[] {
+            "ctz", "mtz"
+    };
     private static String[] ZIP_EXTS  = new String[] {
             "zip", "rar"
     };
@@ -160,7 +162,7 @@ public class FileCategoryHelper {
         String selection = null;
         switch (cat) {
             case Theme:
-                selection = FileColumns.DATA + " LIKE '%.mtz'";
+                selection = FileColumns.DATA + " LIKE '%.ctz' OR " + FileColumns.DATA + " LIKE '%.mtz'";
                 break;
             case Doc:
                 selection = buildDocSelection();
@@ -301,7 +303,7 @@ public class FileCategoryHelper {
         if (ext.equalsIgnoreCase(APK_EXT)) {
             return FileCategory.Apk;
         }
-        if (ext.equalsIgnoreCase(THEME_EXT)) {
+        if (matchExts(ext, THEME_EXTS)) {
             return FileCategory.Theme;
         }
 
